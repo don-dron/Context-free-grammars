@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="0" failures="0" name="Test" time="0" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" time="0.064" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.7+10-LTS"/>
@@ -17,6 +17,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\dron\Desktop\project\Context-free-grammars"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="intellij.debug.agent" value="true"/>
     <property name="java.runtime.version" value="11.0.7+10-LTS"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="os.arch" value="amd64"/>
@@ -30,6 +31,7 @@
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
     <property name="java.library.path" value="C:\Program Files\BellSoft\LibericaJDK-11\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files\BellSoft\LibericaJRE-8-Full\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\BellSoft\LibericaJDK-8\bin\;C:\Program Files\BellSoft\LibericaJDK-11\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\LLVM\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Users\dron\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\dron\AppData\Local\Programs\Python\Python39\;C:\Users\dron\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\dron\AppData\Local\Programs\Python\Python38-32\;C:\Users\dron\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\JetBrains\CLion 2020.1\bin;;C:\Program Files\JetBrains\PyCharm 2020.1.2\bin;;C:\Program Files\JetBrains\GoLand 2020.1.3\bin;;C:\Users\dron\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Azure Data Studio\bin;."/>
+    <property name="jboss.modules.system.pkgs" value="com.intellij.rt"/>
     <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3/conf"/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="55.0"/>
@@ -42,7 +44,7 @@
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="11"/>
     <property name="user.name" value="dron"/>
-    <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3\boot\plexus-classworlds.license"/>
+    <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\plugins\maven\lib\maven3\boot\plexus-classworlds.license;C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\lib\idea_rt.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version2020.1.1 clean install"/>
@@ -63,4 +65,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+  <testcase classname="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" name="emptyGrammar" time="0.011"/>
+  <testcase classname="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" name="withOneNonTerminalOneRuleGrammar" time="0.043"/>
+  <testcase classname="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" name="withOneNonTerminalMultipleRuleGrammar" time="0.004"/>
+  <testcase classname="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" name="withExternalConstructorGrammar" time="0.003"/>
+  <testcase classname="com.zvoa.maths.tfl.grammar.tests.GrammarBuilderTest" name="eliminateLeftRecursiveTest" time="0.003"/>
 </testsuite>

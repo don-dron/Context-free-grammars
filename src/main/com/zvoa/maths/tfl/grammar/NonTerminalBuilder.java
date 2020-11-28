@@ -1,28 +1,33 @@
 package com.zvoa.maths.tfl.grammar;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
-public class GrammarBuilder {
-    private final List<Terminal> terminals;
-    private final List<NonTerminal> nonTerminals;
+public class NonTerminalBuilder {
+    private final String name;
+    private final Set<Rule> rules;
+    private final GrammarBuilder parentBuilder;
 
-    public GrammarBuilder() {
-        this.terminals = new ArrayList<>();
-        this.nonTerminals = new ArrayList<>();
+    public NonTerminalBuilder(String name, GrammarBuilder parentBuilder) {
+        this.parentBuilder = parentBuilder;
+        this.name = name;
+        this.rules = new LinkedHashSet<>();
     }
 
-    public GrammarBuilder addTerminal(Terminal terminal) {
-        terminals.add(terminal);
+    public RuleBuilder addRule() {
+        RuleBuilder ruleBuilder = new RuleBuilder(this);
+        return ruleBuilder;
+    }
+
+    public NonTerminalBuilder addRule(Rule rule) {
+        rules.add(rule);
         return this;
     }
 
-    public GrammarBuilder addNonTerminal(NonTerminal nonTerminal) {
-        nonTerminals.add(nonTerminal);
-        return this;
-    }
-
-    public Grammar get() {
-        return new Grammar(terminals, nonTerminals);
+    public GrammarBuilder endNonTerminal() {
+        parentBuilder.addNonTerminal(new NonTerminal(name, rules));
+        return parentBuilder;
     }
 }

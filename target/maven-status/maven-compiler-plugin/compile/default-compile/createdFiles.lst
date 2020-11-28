@@ -1,1 +1,12 @@
-Lib.class
+com\zvoa\maths\tfl\grammar\LeftRecursionEliminate.class
+com\zvoa\maths\tfl\grammar\NonTerminal.class
+com\zvoa\maths\tfl\grammar\GrammarBuilder.class
+com\zvoa\maths\tfl\grammar\Grammar.class
+com\zvoa\maths\tfl\grammar\Terminal.class
+com\zvoa\maths\tfl\grammar\Rule.class
+com\zvoa\maths\tfl\grammar\GrammarFactory.class
+com\zvoa\maths\tfl\grammar\NonTerminalBuilder.class
+com\zvoa\maths\tfl\grammar\Application.class
+com\zvoa\maths\tfl\grammar\Symbol.class
+com\zvoa\maths\tfl\grammar\ColorPrintOutput.class
+com\zvoa\maths\tfl\grammar\RuleBuilder.class

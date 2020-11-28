@@ -54,6 +54,10 @@ public class Grammar implements Cloneable {
                     }
                     return found;
                 });
+
+                if(rule.getSymbols().contains(new EpsilonSymbol()) && rule.getSymbols().size() > 1) {
+                    rule.getSymbols().remove(new EpsilonSymbol());
+                }
             }
         }
     }

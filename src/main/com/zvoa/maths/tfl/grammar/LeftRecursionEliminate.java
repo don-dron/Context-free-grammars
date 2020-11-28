@@ -90,7 +90,6 @@ public class LeftRecursionEliminate {
             nonTerminals.addAll(newTerminals);
 
             Grammar withoutLeftRecursion = new Grammar(new LinkedHashSet<>(terminals), new LinkedHashSet<>(nonTerminals));
-            System.out.println(withoutLeftRecursion);
             return withoutLeftRecursion;
         } catch (CloneNotSupportedException exception) {
             throw new IllegalArgumentException(exception.getMessage());

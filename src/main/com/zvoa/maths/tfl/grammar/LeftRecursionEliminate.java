@@ -26,7 +26,7 @@ public class LeftRecursionEliminate {
             List<NonTerminal> newTerminals = new ArrayList<>();
 
             for (int i = 0; i < nonTerminals.size(); i++) {
-                for (int j = 0; j < i; j++) {
+                for (int j = 1; j <= i; j++) {
                     Iterator<Rule> ruleIterator = nonTerminals.get(i).getRules().iterator();
                     List<Rule> forAdd = new ArrayList<>();
                     while (ruleIterator.hasNext()) {

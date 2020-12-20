@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 
+import static com.zvoa.maths.tfl.grammar.GreibachConverter.convertToGreibachNF;
+
 public class GrammarBuilderTest {
     @BeforeClass
     public static void beforeClass() {
@@ -363,7 +365,7 @@ public class GrammarBuilderTest {
                         .addSymbol("Команда")
                         .addSymbol("Программа")
                     .endRule()
-                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
+//                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
                 .endNonTerminal()
 
                 .addNonTerminal("Команда")
@@ -395,7 +397,7 @@ public class GrammarBuilderTest {
                         .addSymbol("Объявление")
                         .addSymbol("СписокОбъявлений")
                     .endRule()
-                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
+//                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
                 .endNonTerminal()
 
                 .addNonTerminal("СписокКоманд")
@@ -403,7 +405,7 @@ public class GrammarBuilderTest {
                         .addSymbol("Команда")
                         .addSymbol("СписокКоманд")
                     .endRule()
-                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
+//                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
                 .endNonTerminal()
 
                 .addNonTerminal("КомандаВыражение")
@@ -497,7 +499,7 @@ public class GrammarBuilderTest {
                     .addRule()
                         .addSymbol("ВыражениеПрисваивания")
                     .endRule()
-                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
+//                    .addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
                 .endNonTerminal()
 
                 .addNonTerminal("ВыражениеПрисваивания")
@@ -653,16 +655,144 @@ public class GrammarBuilderTest {
                     .endRule()
                     .addRule()
                         .addSymbol("SEP")
-                        .addSymbol("Выражение")
+                        .addSymbol("ВыражениеПрисваивания")
                         .addSymbol("SEP")
                     .endRule()
                 .endNonTerminal()
 
                 .endGrammar();
 
+        System.out.println(convertToGreibachNF(grammar));
+    }
+
+    @Test
+    public void greibachTest1() {
+        Grammar grammar = GrammarFactory
+                .build()
+                    .addNonTerminal("S")
+                        .addRule()
+                            .addSymbol("X")
+                            .addSymbol("A")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("B")
+                        .addRule()
+                            .addSymbol("b")
+                            .addSymbol("A")
+                            .addSymbol("B")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("b")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("b")
+                            .addSymbol("A")
+                            .addSymbol("B")
+                            .addSymbol("Z")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("b")
+                            .addSymbol("Z")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("Z")
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                            .addSymbol("Z")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("X")
+                        .addRule()
+                            .addSymbol("b")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("A")
+                        .addRule()
+                            .addSymbol("a")
+                        .endRule()
+                    .endNonTerminal()
+                .endGrammar();
+
         System.out.println(grammar);
-        grammar = LeftRecursionEliminate.eliminateLeftRecursion(grammar);
+        System.out.println(convertToGreibachNF(grammar));
+    }
+
+    @Test
+    public void greibachTest2() {
+        Grammar grammar = GrammarFactory
+                .build()
+                    .addNonTerminal("S")
+                        .addRule()
+                            .addSymbol("X")
+                            .addSymbol("A")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("B")
+                        .addRule()
+                            .addSymbol("X")
+                            .addSymbol("C")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("X")
+                            .addSymbol("A")
+                            .addSymbol("B")
+                            .addSymbol("С")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("X")
+                            .addSymbol("A")
+                            .addSymbol("B")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("b")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("C")
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                            .addSymbol("C")
+                        .endRule()
+                        .addRule()
+                            .addSymbol("B")
+                            .addSymbol("B")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("X")
+                        .addRule()
+                            .addSymbol("b")
+                        .endRule()
+                    .endNonTerminal()
+
+                    .addNonTerminal("A")
+                        .addRule()
+                            .addSymbol("a")
+                        .endRule()
+                    .endNonTerminal()
+                .endGrammar();
+
         System.out.println(grammar);
+        System.out.println(convertToGreibachNF(grammar));
     }
 
     @After

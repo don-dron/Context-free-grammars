@@ -33,7 +33,11 @@ public class Grammar implements Cloneable {
                 .map(Objects::toString)
                 .collect(Collectors.joining(NON_TERMINALS_DELIMITER));
 
-        return "Terminals:\n" + terminalsString + "\nNonTerminals:\n" + nonTerminalsString;
+        return "\nTerminals:\n" + terminalsString + "\nRules:" + nonTerminals
+                .stream()
+                .map(nonTerminal -> nonTerminal.getRules().size())
+                .reduce((a, b) -> a + b)
+                .orElse(0) + "\nNonTerminals:\n" + nonTerminalsString;
     }
 
     private void findDependencies() {
@@ -55,7 +59,7 @@ public class Grammar implements Cloneable {
                     return found;
                 });
 
-                if(rule.getSymbols().contains(new EpsilonSymbol()) && rule.getSymbols().size() > 1) {
+                if (rule.getSymbols().contains(new EpsilonSymbol()) && rule.getSymbols().size() > 1) {
                     rule.getSymbols().remove(new EpsilonSymbol());
                 }
             }

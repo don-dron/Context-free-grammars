@@ -795,6 +795,80 @@ public class GrammarBuilderTest {
         System.out.println(convertToGreibachNF(grammar));
     }
 
+    @Test
+    public void greibachTest3() {
+        Grammar grammar = GrammarFactory
+                .build()
+                .addNonTerminal("S")
+                    .addRule()
+                        .addSymbol("A")
+                        .addSymbol("a")
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal("A")
+                    .addRule()
+                        .addSymbol("B")
+                        .addSymbol("b")
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal("B")
+                    .addRule()
+                        .addSymbol("C")
+                        .addSymbol("c")
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal("C")
+                    .addRule()
+                        .addSymbol("D")
+                        .addSymbol("d")
+                    .endRule()
+                    .addRule()
+                        .addSymbol("e")
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal("D")
+                    .addRule()
+                        .addSymbol("e")
+                        .addSymbol("c")
+                        .addSymbol("b")
+                        .addSymbol("z")
+                    .endRule()
+                    .addRule()
+                        .addSymbol("e")
+                        .addSymbol("c")
+                        .addSymbol("b")
+                        .addSymbol("z")
+                        .addSymbol("Z")
+                    .endRule()
+                .endNonTerminal()
+
+
+                .addNonTerminal("Z")
+                    .addRule()
+                        .addSymbol("d")
+                        .addSymbol("c")
+                        .addSymbol("b")
+                        .addSymbol("z")
+                    .endRule()
+                    .addRule()
+                        .addSymbol("d")
+                        .addSymbol("c")
+                        .addSymbol("b")
+                        .addSymbol("z")
+                        .addSymbol("Z")
+                    .endRule()
+                .endNonTerminal()
+
+                .endGrammar();
+
+        System.out.println(grammar);
+        System.out.println(convertToGreibachNF(grammar));
+    }
+
     @After
     public void timeStampTest() {
         //

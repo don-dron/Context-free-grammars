@@ -1,13 +1,7 @@
 package com.zvoa.maths.tfl.grammar.tests;
 
-import com.zvoa.maths.tfl.grammar.Rule;
 import com.zvoa.maths.tfl.grammar.*;
 import org.junit.*;
-
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-
-import static com.zvoa.maths.tfl.grammar.GreibachConverter.convertToGreibachNF;
 
 public class CGrammarTest {
 
@@ -65,12 +59,46 @@ public class CGrammarTest {
     public static final String ELLIPSIS = "...";
     public static final String TYPE_QUALIFIER_LIST = "type_qualifier_list";
     public static final String TYPE_QUALIFIER = "type_qualifier";
+    public static final String ASTERISK = "*";
+    public static final String DIRECT_DECLARATOR = "direct_declarator";
+    public static final String CONST = "const";
+    public static final String VOLATILE = "volatile";
+    public static final String ENUMERATOR = "enumerator";
+    public static final String EQUAL = "=";
+    public static final String ENUMERATOR_LIST = "enumerator_list";
+    public static final String ENUM_SPECIFIER = "enum_specifier";
+    public static final String ENUM = "enum";
+    public static final String STRUCT_DECLARATOR = "struct_declarator";
+    public static final String STRUCT_DECLARATOR_LIST = "struct_declarator_list";
+    public static final String TYPE_SPECIFIER = "type_specifier";
+    public static final String STRUCT_DECLARATION_LIST = "struct_declaration_list";
+    public static final String STRUCT_DECLARATION = "struct_declaration";
+    public static final String STRUCT_OR_UNION = "struct_or_union";
+    public static final String UNION = "union";
+    public static final String STRUCT = "struct";
+    public static final String STRUCT_OR_UNION_SPECIFIER = "struct_or_union_specifier";
+    public static final String VOID = "void";
+    public static final String CHAR = "char";
+    public static final String SHORT = "short";
+    public static final String INT = "int";
+    public static final String LONG = "long";
+    public static final String FLOAT = "float";
+    public static final String DOUBLE = "double";
+    public static final String SIGNED = "signed";
+    public static final String UNSIGNED = "unsigned";
+    public static final String STORAGE_CLASS_SPECIFIER = "storage_class_specifier";
+    public static final String TYPEDEF = "typedef";
+    public static final String EXTERN = "extern";
+    public static final String AUTO = "auto";
+    public static final String STATIC = "static";
+    public static final String REGISTER = "register";
+    public static final String INIT_DECLARATOR = "init_declarator";
+    public static final String INIT_DECLARATOR_LIST = "init_declarator_list";
 
     @Test
     public void CFullGrammarTest() {
         Grammar grammar = GrammarFactory
                 .build()
-
                 .addNonTerminal(FUNCTION_DEFINITION)
                     .addRule()
                         .addSymbol(DECLARATION_SPECIFIERS)
@@ -447,6 +475,353 @@ public class CGrammarTest {
                         .addSymbol(TYPE_QUALIFIER_LIST)
                         .addSymbol(TYPE_QUALIFIER)
                     .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(POINTER)
+                    .addRule()
+                        .addSymbol(ASTERISK)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ASTERISK)
+                        .addSymbol(TYPE_QUALIFIER_LIST)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ASTERISK)
+                        .addSymbol(POINTER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ASTERISK)
+                        .addSymbol(TYPE_QUALIFIER_LIST)
+                        .addSymbol(POINTER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(DIRECT_DECLARATOR)
+                    .addRule()
+                        .addSymbol(IDENTIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(LEFT_BRACKET)
+                        .addSymbol(DECLARATOR)
+                        .addSymbol(RIGHT_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                        .addSymbol(LEFT_SQUARE_BRACKET)
+                        .addSymbol(CONSTANT_EXPRESSION)
+                        .addSymbol(RIGHT_SQUARE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                        .addSymbol(LEFT_SQUARE_BRACKET)
+                        .addSymbol(RIGHT_SQUARE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                        .addSymbol(LEFT_BRACKET)
+                        .addSymbol(PARAMETER_TYPE_LIST)
+                        .addSymbol(RIGHT_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                        .addSymbol(LEFT_BRACKET)
+                        .addSymbol(IDENTIFIER_LIST)
+                        .addSymbol(RIGHT_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                        .addSymbol(LEFT_BRACKET)
+                        .addSymbol(RIGHT_BRACKET)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(DECLARATOR)
+                    .addRule()
+                        .addSymbol(POINTER)
+                        .addSymbol(DIRECT_DECLARATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DIRECT_DECLARATOR)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(TYPE_QUALIFIER)
+                    .addRule()
+                        .addSymbol(CONST)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(VOLATILE)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(ENUMERATOR)
+                    .addRule()
+                        .addSymbol(IDENTIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(IDENTIFIER)
+                        .addSymbol(EQUAL)
+                        .addSymbol(CONSTANT_EXPRESSION)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(ENUMERATOR_LIST)
+                    .addRule()
+                        .addSymbol(ENUMERATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ENUMERATOR_LIST)
+                        .addSymbol(COMMA)
+                        .addSymbol(ENUMERATOR)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(ENUM_SPECIFIER)
+                    .addRule()
+                        .addSymbol(ENUM)
+                        .addSymbol(LEFT_FIGURE_BRACKET)
+                        .addSymbol(ENUMERATOR_LIST)
+                        .addSymbol(RIGHT_FIGURE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ENUM)
+                        .addSymbol(IDENTIFIER)
+                        .addSymbol(LEFT_FIGURE_BRACKET)
+                        .addSymbol(ENUMERATOR_LIST)
+                        .addSymbol(RIGHT_FIGURE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(ENUM)
+                        .addSymbol(IDENTIFIER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_DECLARATOR)
+                    .addRule()
+                        .addSymbol(DECLARATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(COLON)
+                        .addSymbol(CONSTANT_EXPRESSION)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DECLARATOR)
+                        .addSymbol(COLON)
+                        .addSymbol(CONSTANT_EXPRESSION)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_DECLARATOR_LIST)
+                    .addRule()
+                        .addSymbol(STRUCT_DECLARATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STRUCT_DECLARATOR_LIST)
+                        .addSymbol(COMMA)
+                        .addSymbol(STRUCT_DECLARATOR)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(SPECIFIER_QUALIFIER_LIST)
+                    .addRule()
+                        .addSymbol(TYPE_SPECIFIER)
+                        .addSymbol(SPECIFIER_QUALIFIER_LIST)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_SPECIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_QUALIFIER)
+                        .addSymbol(SPECIFIER_QUALIFIER_LIST)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_QUALIFIER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_DECLARATION)
+                    .addRule()
+                        .addSymbol(SPECIFIER_QUALIFIER_LIST)
+                        .addSymbol(STRUCT_DECLARATOR_LIST)
+                        .addSymbol(SEMICOLON)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_DECLARATION_LIST)
+                    .addRule()
+                        .addSymbol(STRUCT_DECLARATION)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STRUCT_DECLARATION_LIST)
+                        .addSymbol(STRUCT_DECLARATION)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_OR_UNION)
+                    .addRule()
+                        .addSymbol(STRUCT)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(UNION)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STRUCT_OR_UNION_SPECIFIER)
+                    .addRule()
+                        .addSymbol(STRUCT_OR_UNION)
+                        .addSymbol(IDENTIFIER)
+                        .addSymbol(LEFT_FIGURE_BRACKET)
+                        .addSymbol(STRUCT_DECLARATION_LIST)
+                        .addSymbol(RIGHT_FIGURE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STRUCT_OR_UNION)
+                        .addSymbol(STRUCT_DECLARATION_LIST)
+                        .addSymbol(LEFT_FIGURE_BRACKET)
+                        .addSymbol(RIGHT_FIGURE_BRACKET)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STRUCT_OR_UNION)
+                        .addSymbol(IDENTIFIER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(TYPE_SPECIFIER)
+                .addRule()
+                    .addSymbol(VOID)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(CHAR)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(SHORT)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(INT)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(LONG)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(FLOAT)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(DOUBLE)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(SIGNED)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(UNSIGNED)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(STRUCT_OR_UNION_SPECIFIER)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(ENUM_SPECIFIER)
+                .endRule()
+
+                .addRule()
+                    .addSymbol(TYPE_NAME)
+                .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(STORAGE_CLASS_SPECIFIER)
+                    .addRule()
+                        .addSymbol(TYPEDEF)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(EXTERN)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STATIC)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(AUTO)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(REGISTER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(INIT_DECLARATOR)
+                    .addRule()
+                        .addSymbol(DECLARATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DECLARATOR)
+                        .addSymbol(EQUAL)
+                        .addSymbol(INITIALIZER)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(INIT_DECLARATOR_LIST)
+                    .addRule()
+                        .addSymbol(INIT_DECLARATOR)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(INIT_DECLARATOR_LIST)
+                        .addSymbol(COMMA)
+                        .addSymbol(INIT_DECLARATOR)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(DECLARATION_SPECIFIERS)
+                    .addRule()
+                        .addSymbol(STORAGE_CLASS_SPECIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(STORAGE_CLASS_SPECIFIER)
+                        .addSymbol(DECLARATION_SPECIFIERS)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_SPECIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_SPECIFIER)
+                        .addSymbol(DECLARATION_SPECIFIERS)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_QUALIFIER)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(TYPE_QUALIFIER)
+                        .addSymbol(DECLARATION_SPECIFIERS)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(DECLARATION)
+                    .addRule()
+                        .addSymbol(DECLARATION_SPECIFIERS)
+                        .addSymbol(SEMICOLON)
+                    .endRule()
+                    .addRule()
+                        .addSymbol(DECLARATION_SPECIFIERS)
+                        .addSymbol(INIT_DECLARATOR_LIST)
+                        .addSymbol(SEMICOLON)
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(CONSTANT_EXPRESSION)
+                    .addRule()
+                        .addSymbol("conditional_expression")
+                    .endRule()
+                .endNonTerminal()
+
+                .addNonTerminal(EXPRESSION)
+                .addRule()
+                .addSymbol("conditional_expression")
+                .endRule()
                 .endNonTerminal()
 
                 .endGrammar();

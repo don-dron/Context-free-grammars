@@ -206,129 +206,15 @@ S -e
 //                .endNonTerminal()
 //                .endGrammar();
 //
-//        Grammar grammar = GrammarFactory
-//                .build()
-//                    .addNonTerminal("A")
-//                        .addRule()
-//                            .addSymbol("S")
-//                            .addSymbol("a")
-//                        .endRule()
-//                    .endNonTerminal()
-//                    .addNonTerminal("S")
-//                        .addRule()
-//                            .addSymbol("S")
-//                            .addSymbol("b")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("A")
-//                            .addSymbol("g")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("b")
-//                        .endRule()
-//                    .endNonTerminal()
-//                .endGrammar();
-//        R -> a | RR | R* | R” | “R | (R) | ε
-        Grammar grammar = GrammarFactory
-                .build()
-                    .addNonTerminal("R")
-                        .addRule()
-                            .addSymbol("a")
-                        .endRule()
-                        .addRule()
-                            .addSymbol("R")
-                            .addSymbol("R")
-                        .endRule()
-                        .addRule()
-                            .addSymbol("R")
-                            .addSymbol("*")
-                        .endRule()
-                        .addRule()
-                            .addSymbol("R")
-                            .addSymbol("\"")
-                        .endRule()
-                        .addRule()
-                            .addSymbol("\"")
-                            .addSymbol("R")
-                        .endRule()
-                        .addRule()
-                            .addSymbol("(")
-                            .addSymbol("R")
-                            .addSymbol(")")
-                        .endRule()
-                        //.addRule(new Rule(Arrays.asList(new EpsilonSymbol())))
-                    .endNonTerminal()
-                .endGrammar();
-//        Grammar grammar = GrammarFactory
-//                .build()
-//                    .addNonTerminal("A")
-//                        .addRule()
-//                            .addSymbol("B")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("a")
-//                        .endRule()
-//                    .endNonTerminal()
-//                    .addNonTerminal("B")
-//                        .addRule()
-//                            .addSymbol("C")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("b")
-//                        .endRule()
-//                    .endNonTerminal()
-//                    .addNonTerminal("C")
-//                        .addRule()
-//                            .addSymbol("dd")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("c")
-//                        .endRule()
-//                    .endNonTerminal()
-//                .endGrammar();
 
-//                Grammar grammar = GrammarFactory
-//                .build()
-//                    .addNonTerminal("E")
-//                        .addRule()
-//                            .addSymbol("E")
-//                            .addSymbol("+")
-//                            .addSymbol("T")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("T")
-//                        .endRule()
-//                    .endNonTerminal()
-//                    .addNonTerminal("T")
-//                        .addRule()
-//                            .addSymbol("T")
-//                            .addSymbol("*")
-//                            .addSymbol("F")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("F")
-//                        .endRule()
-//                    .endNonTerminal()
-//                    .addNonTerminal("F")
-//                        .addRule()
-//                            .addSymbol("(")
-//                            .addSymbol("E")
-//                            .addSymbol(")")
-//                        .endRule()
-//                        .addRule()
-//                            .addSymbol("a")
-//                        .endRule()
-//                    .endNonTerminal()
-//                .endGrammar();
-        grammar = LeftRecursionEliminate.eliminateLeftRecursion(grammar);
-        System.out.println(grammar);
+
 //        grammar = LeftRecursionEliminate.eliminateLeftRecursion(grammar);
 //        System.out.println(grammar);
 //        grammar = RemoveUselessSymbols.removeUnreachableSymbols(grammar);
 //        System.out.println(grammar);
 //        grammar = RemoveUselessSymbols.removeNonGeneratorSymbols(grammar);
 //        System.out.println(grammar);
-        grammar = RemoveUselessSymbols.removeChainRules(grammar);
-        System.out.println(grammar);
+//        grammar = RemoveUselessSymbols.removeChainRules(grammar);
+//        System.out.println(grammar);
     }
 }

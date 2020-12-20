@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Rule implements Cloneable {
-    public static final String SYMBOLS_DELIMITER = "";
+    public static final String SYMBOLS_DELIMITER = " ";
     private final List<Symbol> symbols;
 
     public Rule(List<Symbol> symbols) {
